@@ -1,0 +1,19 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: helm-nginx-example
+spec:
+  destination:
+    name: ''
+    namespace: nginx
+    server: 'https://kubernetes.default.svc'
+  source:
+    path: ''
+    repoURL: 'https://charts.bitnami.com/bitnami'
+    targetRevision: 17.3.2
+    chart: nginx
+  sources: []
+  project: default
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
