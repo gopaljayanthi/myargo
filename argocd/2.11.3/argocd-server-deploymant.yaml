@@ -15,6 +15,20 @@ spec:
       labels:
         app.kubernetes.io/name: argocd-server
     spec:
+      initContainers:
+        - name: extension-metrics
+          image: quay.io/argoprojlabs/argocd-extension-installer:v0.0.1
+          env:
+          - name: EXTENSION_URL
+            value: https://github.com/argoproj-labs/argocd-extension-metrics/releases/download/v1.0.0/extension.tar.gz
+          - name: EXTENSION_CHECKSUM_URL
+            value: https://github.com/argoproj-labs/argocd-extension-metrics/releases/download/v1.0.0/extension_checksums.txt
+          volumeMounts:
+            - name: extensions
+              mountPath: /tmp/extensions/
+          securityContext:
+            runAsUser: 1000
+            allowPrivilegeEscalation: false
       affinity:
         podAntiAffinity:
           preferredDuringSchedulingIgnoredDuringExecution:
@@ -302,6 +316,8 @@ spec:
           seccompProfile:
             type: RuntimeDefault
         volumeMounts:
+        - name: extensions
+          mountPath: /tmp/extensions/
         - mountPath: /app/config/ssh
           name: ssh-known-hosts
         - mountPath: /app/config/tls
@@ -316,6 +332,8 @@ spec:
           name: tmp
       serviceAccountName: argocd-server
       volumes:
+      - name: extensions
+        emptyDir: {}
       - emptyDir: {}
         name: plugins-home
       - emptyDir: {}
