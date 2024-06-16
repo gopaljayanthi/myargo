@@ -8,7 +8,7 @@ metadata:
   name: argocd-cm
 data:
   extension.config: |-
-  extensions:
+    extensions:
     - name: metrics
       backend:
         services:
