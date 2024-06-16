@@ -12,4 +12,4 @@ data:
     - name: metrics
       backend:
         services:
-          - url: argocd-metrics-server.default.svc.cluster.local:9003
+          - url: http://argocd-metrics-server.default.svc.cluster.local:9003
