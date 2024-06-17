@@ -9,7 +9,7 @@ metadata:
 data:
   extension.config: |-
     extensions:
-    - name: metrics
-      backend:
-        services:
-          - url: http://argocd-metrics-server.default.svc.cluster.local:9003
+      - name: metrics
+        backend:
+          services:
+            - url: http://argocd-metrics-server.default.svc.cluster.local:9003
