@@ -1,0 +1,14 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: wisetech-appofappset
+  namespace: argocd
+spec:
+  destination:
+    namespace: argocd
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+       path: wisetech
+       repoURL: https://github.com/gopaljayanthi/myargo.git
+       targetRevision: HEAD
