@@ -1,0 +1,32 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: guestbook-test
+  namespace: argocd
+spec:
+  goTemplate: true
+  goTemplateOptions: ["missingkey=error"]
+  generators:
+  - list:
+      elements:
+      - cluster: in-cluster
+  template:
+    metadata:
+      name: 'guestbook-test'
+    spec:
+      project: default
+      sources:
+        - repoURL: https://github.com/argoproj/argocd-example-apps.git
+          targetRevision: HEAD
+          path: guestbook
+        - repoURL: https://github.com/argoproj/argocd-example-apps.git
+          targetRevision: HEAD
+          path: guestbook
+          plugin:
+            name: my-plugin-v5.0
+            env:
+              - name: FOO
+                value: bar
+      destination:
+        name: '{{.cluster}}'
+        namespace: guestbook-app

@@ -7,6 +7,11 @@ metadata:
     app.kubernetes.io/part-of: argocd
   name: argocd-cm
 data:
+  accounts.admin: apiKey, login
+  accounts.nologs: login
+
+  server.rbac.log.enforce.enable: "true"
+
   extension.config: |-
     extensions:
       - name: metrics
