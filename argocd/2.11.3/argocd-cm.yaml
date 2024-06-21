@@ -10,6 +10,8 @@ data:
   accounts.admin: apiKey, login
   accounts.nologs: login
 
+  exec.enabled: "true"
+
   server.rbac.log.enforce.enable: "true"
 
   extension.config: |-
