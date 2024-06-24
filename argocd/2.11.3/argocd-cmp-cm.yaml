@@ -14,22 +14,3 @@ data:
         command: [sh, -c, 'echo "Initializing..."']
       generate:
         command: [sh, -c, 'kubectl create cm $ARGOCD_APP_SOURCE_PATH --from-file=. --dry-run=client -o yaml']
-  avp.yaml: |
-    apiVersion: argoproj.io/v1alpha1
-    kind: ConfigManagementPlugin
-    metadata:
-      name: argocd-vault-plugin
-    spec:
-      allowConcurrency: true
-      discover:
-        find:
-          command:
-            - sh
-            - "-c"
-            - "find . -name '*.yaml' | xargs -I {} grep \"<path\\|avp\\.kubernetes\\.io\" {} | grep ."
-      generate:
-        command:
-          - argocd-vault-plugin
-          - generate
-          - "."
-      lockRepo: false
