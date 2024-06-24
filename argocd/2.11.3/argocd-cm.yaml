@@ -9,6 +9,7 @@ metadata:
 data:
   accounts.admin: apiKey, login
   accounts.nologs: login
+  accounts.image-updater: apiKey
 
   exec.enabled: "true"
 
