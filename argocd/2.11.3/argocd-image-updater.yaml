@@ -74,7 +74,7 @@ data:
   # Whether to use GRPC-web protocol instead of GRPC over HTTP/2
   argocd.grpc_web: "true"
   # Whether to ignore invalid TLS cert from Argo CD API endpoint
-  argocd.insecure: "false"
+  argocd.insecure: "true"
   # Whether to use plain text connection (http) instead of TLS (https)
   argocd.plaintext: "false"
 ---
