@@ -67,6 +67,16 @@ metadata:
 data:
   # log.level can be one of trace, debug, info, warn or error
   log.level: debug
+
+  applications_api: argocd
+  # The address of Argo CD API endpoint - defaults to argocd-server.argocd
+  argocd.server_addr: argocd-server:443
+  # Whether to use GRPC-web protocol instead of GRPC over HTTP/2
+  argocd.grpc_web: "true"
+  # Whether to ignore invalid TLS cert from Argo CD API endpoint
+  argocd.insecure: "false"
+  # Whether to use plain text connection (http) instead of TLS (https)
+  argocd.plaintext: "false"
 ---
 apiVersion: v1
 kind: ConfigMap

@@ -21384,10 +21384,12 @@ metadata:
 spec:
   ports:
   - name: http
+    nodePort: 32188
     port: 80
     protocol: TCP
     targetPort: 8080
   - name: https
+    nodePort: 30767
     port: 443
     protocol: TCP
     targetPort: 8080
