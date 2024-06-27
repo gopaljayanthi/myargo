@@ -14,8 +14,8 @@ data:
         path: /repos/gopaljayanthi/forjpmc/dispatches
         body: |
           {
-          "event_type":"argocd-event",
-           "client_payload":{"argocd-application-name":"cm"}}
+           "event_type":"argocd-event",
+           "client_payload":{"argocd-application-name":"cm"}
            }
   template.app-deployed: |
     email:
