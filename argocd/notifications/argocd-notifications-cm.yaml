@@ -219,6 +219,7 @@ data:
     - description: Application has degraded
       send:
       - app-health-degraded
+      - github
       when: app.status.health.status == 'Degraded'
   trigger.on-sync-failed: |
     - description: Application syncing has failed
