@@ -213,6 +213,7 @@ data:
       oncePer: app.status.sync.revision
       send:
       - app-deployed
+      - github
       when: app.status.operationState.phase in ['Succeeded'] and app.status.health.status == 'Healthy'
   trigger.on-health-degraded: |
     - description: Application has degraded
@@ -238,7 +239,6 @@ data:
     - description: Application syncing has succeeded
       send:
       - app-sync-succeeded
-      - github
       when: app.status.operationState.phase in ['Succeeded']
 kind: ConfigMap
 metadata:
