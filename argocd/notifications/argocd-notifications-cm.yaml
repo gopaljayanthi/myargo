@@ -203,7 +203,8 @@ data:
           {
            "event_type":"argocd-event",
            "client_payload": {
-             "argocd-application-name":"{{.app.metadata.name}}"
+             "argocd-application-name":"{{.app.metadata.name}}",
+             "argocd-application-sync-status":"{{.app.status.sync.status}}"
              }
            }
   trigger.on-deployed: |
