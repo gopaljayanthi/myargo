@@ -22,14 +22,8 @@ spec:
         volumeMounts:
         - name: liquibase-config
           mountPath: /liquibase/changelog
-        args:
-        - "--changeLogFile=/liquibase/changelog/db.changelog-master.yaml"
-        - "--url=jdbc:postgresql://postgres.postgres.svc.cluster.local:5432/mydb"
-        - "--username=myuser"
-        - "--password=mypassword"
-        command:
-        - liquibase
-        - update
+        command: ["liquibase"]
+        args: ["--defaultsFile=/liquibase/changelog/liquibase.properties", "update"]
       volumes:
       - name: liquibase-config
         configMap:

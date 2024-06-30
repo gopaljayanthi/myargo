@@ -5,7 +5,7 @@ metadata:
   namespace: postgres
 data:
   liquibase.properties: |
-    changeLogFile: classpath:db/changelog/db.changelog-master.yaml
+    changeLogFile: /liquibase/changelog/db.changelog-master.yaml
     url: jdbc:postgresql://postgres.postgres.svc.cluster.local:5432/mydb
     username: myuser
     password: mypassword
