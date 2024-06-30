@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: liquibase
+  namespace: postgres
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: liquibase
+  template:
+    metadata:
+      labels:
+        app: liquibase
+    spec:
+      containers:
+      - name: liquibase
+        image: liquibase/liquibase:latest
+        env:
+        - name: JAVA_OPTS
+          value: "-Dliquibase.hub.mode=off"
+        volumeMounts:
+        - name: liquibase-config
+          mountPath: /liquibase/changelog
+        args: ["--changeLogFile=/liquibase/changelog/db.changelog-master.yaml", "update"]
+      volumes:
+      - name: liquibase-config
+        configMap:
+          name: liquibase-config

@@ -1,0 +1,31 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: liquibase-config
+  namespace: postgres
+data:
+  liquibase.properties: |
+    changeLogFile: classpath:db/changelog/db.changelog-master.yaml
+    url: jdbc:postgresql://postgres.postgres.svc.cluster.local:5432/mydb
+    username: myuser
+    password: mypassword
+  db.changelog-master.yaml: |
+    databaseChangeLog:
+      - changeSet:
+          id: 1
+          author: yourname
+          changes:
+            - createTable:
+                tableName: example
+                columns:
+                  - column:
+                      name: id
+                      type: int
+                      autoIncrement: true
+                      constraints:
+                        primaryKey: true
+                  - column:
+                      name: name
+                      type: varchar(255)
+                      constraints:
+                        nullable: false
