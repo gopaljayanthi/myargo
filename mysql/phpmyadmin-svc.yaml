@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: phpmyadmin
+  namespace: database
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 80
+    targetPort: 80
+    nodePort:38000
+  selector:
+    app: phpmyadmin
+  type:
+    NodePort

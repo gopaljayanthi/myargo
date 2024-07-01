@@ -22,8 +22,12 @@ spec:
         volumeMounts:
         - name: liquibase-config
           mountPath: /liquibase/changelog
-        command: ["liquibase"]
-        args: ["--defaultsFile=/liquibase/changelog/liquibase.properties", "update"]
+        command: ["sh", "-c"]
+        args:
+        - |
+          cp /liquibase/changelog/liquibase.properties /liquibase/
+          cp /liquibase/changelog/db.changelog-master.yaml /liquibase/
+          liquibase --defaultsFile=/liquibase/liquibase.properties update
       volumes:
       - name: liquibase-config
         configMap:
