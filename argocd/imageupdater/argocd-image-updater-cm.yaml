@@ -21,7 +21,7 @@ data:
   registries:
     - name: Docker Hub
       prefix: docker.io
-      api_url: https://registry-1.docker.io
-      credentials: secret:argocd/dockerhub-creds
+      api_url: 'https://registry-1.docker.io'
+      credentials: 'secret:argocd/dockerhub-creds'
       defaultns: library
       default: true
