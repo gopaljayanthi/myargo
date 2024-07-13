@@ -18,7 +18,8 @@ data:
   argocd.insecure: "true"
   # Whether to use plain text connection (http) instead of TLS (https)
   argocd.plaintext: "false"
-  registries:
+  registries.conf: |
+    registries:
     - name: Docker Hub
       prefix: docker.io
       api_url: 'https://registry-1.docker.io'
