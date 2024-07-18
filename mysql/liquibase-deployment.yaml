@@ -16,6 +16,10 @@ spec:
       containers:
       - name: liquibase
         image: liquibase/liquibase:latest
+        command: ["sh", "-c"]
+        args:
+        - |
+          liquibase --defaultsFile=/liquibase/liquibase.properties update
         env:
         - name: JAVA_OPTS
           value: "-Dfile.encoding=UTF-8"
