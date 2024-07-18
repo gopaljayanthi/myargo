@@ -8,5 +8,5 @@ data:
     url: jdbc:mysql://mysql:3306/mydb
     username: myuser
     password: mypassword
-    changeLogFile: /liquibase/changelog/db.changelog-master.xml
+    changeLogFile: db.changelog-master.xml
     logLevel: info
