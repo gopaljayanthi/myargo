@@ -14,7 +14,7 @@ data:
         
         <include file="changelog/1-create-example-table.xml"/>
     </databaseChangeLog>
-  changelog/create-example-table.xml: |
+  changelog-create-example-table.xml: |
     <?xml version="1.0" encoding="UTF-8"?>
     <databaseChangeLog
         xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
