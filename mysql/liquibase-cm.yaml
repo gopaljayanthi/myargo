@@ -2,7 +2,6 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: liquibase-config
-  namespace: default
 data:
   liquibase.properties: |
     driver: com.mysql.cj.jdbc.Driver
