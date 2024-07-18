@@ -28,7 +28,7 @@ spec:
           mountPath: /liquibase/liquibase.properties
           subPath: liquibase.properties
         - name: changelog-volume
-          mountPath: /liquibase
+          mountPath: /liquibase/changelog
       volumes:
       - name: liquibase-config-volume
         configMap:
