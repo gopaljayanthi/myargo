@@ -11,7 +11,7 @@ data:
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
             http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
         
-        <include file="changelog/1-create-example-table.xml"/>
+        <include file="changelog/create-example-table.xml"/>
     </databaseChangeLog>
   changelog-create-example-table.xml: |
     <?xml version="1.0" encoding="UTF-8"?>
