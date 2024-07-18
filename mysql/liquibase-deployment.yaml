@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: liquibase
-        image: liquibase/liquibase:latest
+        image: gopalvithaljayanthi/liquibase-mysql:v1
         command: ["sh", "-c"]
         args:
         - |
