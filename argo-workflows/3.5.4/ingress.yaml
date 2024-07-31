@@ -1,0 +1,24 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+  name: argo-workflows-ingress
+spec:
+  rules:
+  - host: argoworkflows.jpmc.opsmx.net
+    http:
+      paths:
+      - backend:
+          service:
+            name: argo-server
+            port:
+              name: web
+        path: /
+        pathType: Prefix
+  tls:
+  - hosts:
+    - argoworkflows.jpmc.opsmx.net
+    secretName: argoworkflows-tls-certificate
