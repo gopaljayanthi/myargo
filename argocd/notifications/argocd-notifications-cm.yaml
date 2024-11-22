@@ -250,7 +250,7 @@ data:
       when: app.status.sync.status == 'Unknown'
   trigger.on-sync-succeeded: |
     - description: Application syncing has succeeded
-      oncePer: app.status.sync.revision
+      oncePer: app.status.sync.revisions
       send:
       - app-sync-succeeded
       when: app.status.operationState.phase in ['Succeeded']
