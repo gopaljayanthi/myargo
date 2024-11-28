@@ -1,12 +1,15 @@
 apiVersion: v1
 data:
-  #subscriptions: |
+  subscriptions: |
     # subscription for on-sync-status-unknown trigger notifications
-    #- recipients:
-     # - email:gopal.jayanti@opsmx.io
-      #triggers:
+    - recipients:
+      #- email:gopal.jayanti@opsmx.io
+      - slack:chatgpt-channel
+      triggers:
       #- on-sync-status-unknown
-      #- on-sync-succeeded
+      - on-health-degraded
+  service.slack: |
+      token: $slack-token
   service.email: |
     username: $email-username
     password: $email-password
