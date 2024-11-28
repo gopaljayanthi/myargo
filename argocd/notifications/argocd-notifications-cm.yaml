@@ -67,7 +67,7 @@ data:
     email:
       subject: Application {{.app.metadata.name}} has degraded.
     message: |
-      {{if eq .serviceType "slack"}}:exclamation:{{end}} Application {{.app.metadata.name}} has degraded.
+      {{if eq .serviceType "slack"}}:exclamation:{{end}} Application {{.app.metadata.name}} has degraded. {{- range $index, $c := .app.status.resources -}}  {{- if eq $c.health.status "Degraded" -}}    {{$c.kind}} {{$c.name}} is degraded  {{- end -}}{{- end -}}
       Application details: {{.context.argocdUrl}}/applications/{{.app.metadata.name}}.
     slack:
       attachments: |-
