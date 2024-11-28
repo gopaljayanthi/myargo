@@ -67,8 +67,8 @@ data:
     email:
       subject: Application {{.app.metadata.name}} has degraded.
     message: |
-      {{if eq .serviceType "slack"}}:exclamation:{{end}} Application {{.app.metadata.name}} has degraded. {{- range $index, $c := .app.status.resources -}}  {{- if eq $c.health.status "Degraded" -}}    {{$c.kind}} {{$c.name}} is degraded  {{- end -}}{{- end -}}
-      Application details: {{.context.argocdUrl}}/applications/{{.app.metadata.name}}.
+      {{if eq .serviceType "slack"}}:exclamation:{{end}} Application {{.app.metadata.name}} has degraded. {{- range $index, $c := .app.status.resources -}}  {{- if eq $c.health.status "Degraded" -}}    {{$c.kind}} {{$c.name}} is degraded  {{- end -}}{{- end -}}.  
+      Application details: {{.context.argocdUrl}}/applications/{{.app.metadata.name}}  which is deployed in cluster {{.app.spec.destination.server}} in namespace {{.app.spec.destination.namespace}}
     slack:
       attachments: |-
         [{
