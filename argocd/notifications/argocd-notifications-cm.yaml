@@ -25,6 +25,11 @@ data:
       value: token $github-token
     - name: Accept
       value: application/vnd.github.everest-preview+json
+  service.webhook.dora-metrics: |
+    url: http://dora-metrics:5000
+    headers: #optional headers
+    - name: Accept
+      value: application/json
   template.app-deployed: |
     email:
       subject: New version of an application {{.app.metadata.name}} is up and running.
@@ -236,6 +241,16 @@ data:
              "argocd-application-health":"{{.app.status.health.status}}"
              }
            }
+  template.dora-metrics: |
+    webhook:
+      dora-metrics:
+        method: POST
+        path: /webhook
+        body: |
+          {
+           "event_type":"argocd-event",
+           "client_payload": {"application": "appname", "committedAt": "timeof commit", "startedAt": "time of start", "finishedAt": "time of finish"}
+           }
   trigger.on-deployed: |
     - description: Application is synced and healthy. Triggered once per commit.
       oncePer: app.status.sync.revision
@@ -273,6 +288,7 @@ data:
     - description: Application syncing has succeeded
       send:
       - app-sync-succeeded-metrics
+      - dora-metrics
       when: app.status.operationState.phase in ['Succeeded']
 kind: ConfigMap
 metadata:
