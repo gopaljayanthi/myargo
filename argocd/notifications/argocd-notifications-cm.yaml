@@ -217,7 +217,7 @@ data:
       subject: Application {{.app.metadata.name}} has been successfully synced.
     message: |
       {{if eq .serviceType "slack"}}:white_check_mark:{{end}} Application {{.app.metadata.name}} has been successfully synced at {{.app.status.operationState.finishedAt}}.
-      Sync operation details are available at: {{.context.argocdUrl}}/applications/{{.app.metadata.name}}?operation=true . committed at: {{ (call .repo.GetCommitMetadata .app.status.operationState.operation.sync.revision).Date.Format "2006-01-02T15:04:05Z" }}
+      Sync operation details are available at: {{.context.argocdUrl}}/applications/{{.app.metadata.name}}?operation=true . committed at: {{ ((call .repo.GetCommitMetadata .app.status.operationState.operation.sync.revision).Date).Format "2006-01-02T15:04:05Z" }}
  , started at: {{.app.status.operationState.startedAt}}, finished at: {{.app.status.operationState.finishedAt}}
 
     slack:
