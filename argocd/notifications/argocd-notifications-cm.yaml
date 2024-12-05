@@ -28,7 +28,7 @@ data:
   service.webhook.dora-metrics: |
     url: http://dora-metrics:5000
     headers: #optional headers
-    - name: Accept
+    - name: Content-type
       value: application/json
   template.app-deployed: |
     email:
@@ -247,10 +247,7 @@ data:
         method: POST
         path: /webhook
         body: |
-          {
-           "event_type":"argocd-event",
-           "client_payload": {"application": "appname", "committedAt": "timeof commit", "startedAt": "time of start", "finishedAt": "time of finish"}
-           }
+           {"application": "appname", "committedAt": "timeof commit", "startedAt": "time of start", "finishedAt": "time of finish"}
   trigger.on-deployed: |
     - description: Application is synced and healthy. Triggered once per commit.
       oncePer: app.status.sync.revision
