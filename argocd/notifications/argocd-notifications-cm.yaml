@@ -247,7 +247,10 @@ data:
         method: POST
         path: /webhook
         body: |
-           {"application": "appname", "committedAt": "timeof commit", "startedAt": "time of start", "finishedAt": "time of finish"}
+           {"application": "{{.app.metadata.name}}",
+           "committedAt": "{{ (call .repo.GetCommitMetadata .app.status.operationState.operation.sync.revision).Date.Format "2006-01-02T15:04:05Z" }}",
+           "startedAt": "{{.app.status.operationState.startedAt}}",
+           "finishedAt": "{{.app.status.operationState.finishedAt}}"}
   trigger.on-deployed: |
     - description: Application is synced and healthy. Triggered once per commit.
       oncePer: app.status.sync.revision
