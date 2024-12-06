@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: argocd-metrics-server
+spec:
+  selector:
+    matchLabels:
+      app: argocd-metrics-server
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: argocd-metrics-server
+    spec:
+      containers:
+      - args:
+        - -enableTLS=false
+        image: quay.io/argoprojlabs/argocd-extension-metrics:latest
+        imagePullPolicy: IfNotPresent
+        name: argocd-metrics-server
+        ports:
+        - containerPort: 9003
+          name: metrics
+          protocol: TCP
+        resources:
+          requests:
+            cpu: 100m
+            memory: 100Mi
+        volumeMounts:
+        - mountPath: /app/config.json
+          name: config-volume
+          subPath: config.json
+      volumes:
+      - configMap:
+          name: argocd-metrics-server-configmap
+        name: config-volume
