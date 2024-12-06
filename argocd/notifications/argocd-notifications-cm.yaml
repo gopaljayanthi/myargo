@@ -248,7 +248,7 @@ data:
         path: /webhook
         body: |
            {"application": "{{.app.metadata.name}}",
-           "committedAt": "{{ (call .repo.GetCommitMetadata .app.status.operationState.operation.sync.revision).Date.Format "2006-01-02T15:04:05Z" }}",
+           "committedAt": "{{ (call .repo.GetCommitMetadata .app.status.operationState.operation.sync.revision).Date.Unix }}",
            "startedAt": "{{.app.status.operationState.startedAt}}",
            "finishedAt": "{{.app.status.operationState.finishedAt}}"}
   trigger.on-deployed: |
