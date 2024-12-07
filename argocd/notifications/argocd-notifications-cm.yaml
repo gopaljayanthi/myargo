@@ -248,9 +248,9 @@ data:
         path: /webhook
         body: |
            {"application": "{{.app.metadata.name}}",
-           "committedAt": "{{ (call .repo.GetCommitMetadata .app.status.operationState.operation.sync.revision).Date.Unix }}",
-           "startedAt": "{{ (call .time.Parse .app.status.operationState.startedAt).Unix }}",
-           "finishedAt": "{{ (call .time.Parse .app.status.operationState.finishedAt).Unix }}"}
+           "committedAt": "{{ (call .repo.GetCommitMetadata .app.status.operationState.operation.sync.revision).Date.Format "2006-01-02T15:04:05Z" }}",
+           "startedAt": "{{ .app.status.operationState.startedAt }}",
+           "finishedAt": "{{ .app.status.operationState.finishedAt }}"}
   trigger.on-deployed: |
     - description: Application is synced and healthy. Triggered once per commit.
       oncePer: app.status.sync.revision
